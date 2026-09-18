@@ -108,4 +108,103 @@ cp appsettings.sample.json appsettings.json
 ```
 
 | File                      | Committed | Holds                                                         |
-| ------------------------- | --------- | --------------------------------------------
+| ------------------------- | --------- | ------------------------------------------------------------- |
+| `appsettings.sample.json` | Yes       | Placeholder organization URL and credential target.           |
+| `appsettings.json`        | No        | Your organization URL, optional project list. **No tokens.**  |
+
+The token is never stored in the repo. It resolves from an environment variable first, then Windows
+Credential Manager:
+
+| Token            | Environment variable | Credential Manager target                |
+| ---------------- | -------------------- | ---------------------------------------- |
+| Azure DevOps PAT | `ADO_PAT`            | the `AzureDevOps.CredentialTarget` value |
+
+To store it in Windows Credential Manager from your own terminal (keeping it out of shell history):
+
+```
+Import-Module CredentialManager
+$token = Read-Host "Token" -AsSecureString
+New-StoredCredential -Target "ADO-YourOrg-Read-PAT" -UserName "pat" `
+  -SecurePassword $token -Persist LocalMachine -Type Generic
+```
+
+### Usage
+
+The script takes no parameters. `Main` is the control panel: edit the calls, then run it.
+
+```
+./src/Assess-AdoOrganization.ps1
+```
+
+```
+# Assess                              # every project in the organization
+# Assess -Projects Core, Portfolio    # just these projects
+```
+
+Each run writes to `reports/`:
+
+| File                                    | Holds                                         |
+| --------------------------------------- | --------------------------------------------- |
+| `ADO-Assessment-<yyyyMMdd-HHmm>.md`     | The report                                    |
+| `ADO-Assessment-<yyyyMMdd-HHmm>.json`   | Everything behind the report, machine-readable |
+
+and a log to `logs/Assess-AdoOrganization-<yyyyMMdd-HHmmss>.log`.
+
+See **[docs/sample-report.md](docs/sample-report.md)** for a complete report generated from a
+synthetic organization.
+
+## Handle the output with care
+
+The report lists **names, email addresses, group memberships, access levels, and last access
+dates** for everyone in the organization. Treat it as you would any other personnel data:
+
+- `reports/` and `logs/` are gitignored. Keep them that way.
+- Share reports only with people entitled to see who has access to what.
+- Scrub before attaching a report to a GitHub issue. The Contributing section below says what to
+  send instead.
+
+## Tests
+
+```
+Invoke-Pester -Path tests -Output Detailed
+```
+
+The suite is hermetic: nothing resolves a credential, queries a live organization, or writes a log
+file, so it runs anywhere. It also runs on every push and pull request (see the badge above).
+
+## Limitations
+
+- A point-in-time snapshot. There is no trend or comparison between runs.
+- Inventory, not judgment. The report shows what is there. It does not score it or recommend
+  changes.
+- People are counted per project. Someone in four projects appears in each project's table, and the
+  organization total is not deduplicated.
+- Groups sourced from Entra ID are expanded only as far as Azure DevOps has materialized them.
+  Anything it cannot expand is listed under *Not expanded*.
+- Service principals Azure DevOps cannot resolve to a display name are shown by descriptor.
+- Branch counts are not available for disabled repositories.
+- TFVC repositories are detected but not assessed.
+
+## Assessment consulting
+
+An assessment report is the starting point, not the finding. Deciding what the numbers mean for
+your teams, your process, and your plans is usually the hard part. If you would like help with an
+Azure DevOps assessment, migration, or Professional Scrum adoption, get in touch.
+
+**Richard Hundhausen** · <richard@accentient.com> · [Accentient](https://accentient.com)
+
+## Contributing
+
+Bug reports and pull requests are welcome through
+[GitHub Issues](https://github.com/accentient/ado-assessment/issues). When reporting a problem,
+please include whether you are on Services or Server, the Warnings section of the report, and the
+log excerpt from `logs/`. **Never send a token, and never send an unscrubbed report.**
+
+## Related
+
+- [digitalai-agility-to-ado](https://github.com/accentient/digitalai-agility-to-ado): migrate work
+  items from Digital.ai Agility (formerly VersionOne) into Azure DevOps.
+
+## License
+
+[MIT](LICENSE)
