@@ -1,0 +1,28 @@
+# Local configuration containing organization details
+appsettings.json
+
+# Assessment output. Reports list names, emails, group memberships, and
+# access levels for everyone in the organization. Never commit them.
+reports/
+ADO-Assessment-*.md
+ADO-Assessment-*.json
+
+# Run artifacts. The whole folder, not just *.log: runs may also drop
+# scratch files here.
+logs/
+
+# PowerShell / editor
+*.suo
+*.user
+.vs/
+.vscode/
+TestResults/
+*.log
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Local notes and internal working docs (README stays public)
+/*.md
+!README.md
