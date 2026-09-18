@@ -27,18 +27,21 @@ jobs:
       matrix:
         shell: [pwsh, powershell]
 
+    # A step's own shell: key cannot read the matrix; the job's run defaults can.
+    defaults:
+      run:
+        shell: ${{ matrix.shell }}
+
     steps:
       - uses: actions/checkout@v6
 
       - name: Install Pester
-        shell: ${{ matrix.shell }}
         run: |
           Install-Module Pester -MinimumVersion 5.0 -Force -Scope CurrentUser -SkipPublisherCheck
           Import-Module Pester -MinimumVersion 5.0
           (Get-Module Pester).Version.ToString()
 
       - name: Run tests
-        shell: ${{ matrix.shell }}
         run: |
           # The suite is hermetic: no credential is resolved, no live organization is queried, and
           # reports go to Pester's TestDrive, so nothing here needs secrets.
