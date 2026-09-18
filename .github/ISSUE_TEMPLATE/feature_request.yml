@@ -1,0 +1,22 @@
+name: Feature request
+description: Suggest something the assessment should cover or report differently.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The tool is read-only by design and reports inventory, not judgment. Requests that need write
+        access to an organization are out of scope.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: What do you need to know about an organization that the report does not tell you?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Where it would appear in the report, and the Azure DevOps REST API it would read from, if known.

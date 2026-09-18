@@ -1,0 +1,51 @@
+name: Bug report
+description: Something in the assessment is wrong, missing, or fails.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Never paste a token, and never attach an unscrubbed report or console output.** Both list
+        names, email addresses, group memberships, and access levels. Replace them with placeholders
+        before posting.
+
+        Found a security problem? Do not open an issue. See [SECURITY.md](https://github.com/accentient/ado-assessment/blob/main/SECURITY.md).
+
+  - type: input
+    id: powershell
+    attributes:
+      label: PowerShell version
+      description: Output of `$PSVersionTable.PSVersion`
+      placeholder: e.g. 7.5.2 or 5.1.26100
+    validations:
+      required: true
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What you saw, and what you expected to see instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: warnings
+    attributes:
+      label: Warnings section of the report
+      description: Scrubbed. Paste the report's Warnings section, if it has one.
+      render: markdown
+
+  - type: textarea
+    id: console
+    attributes:
+      label: Console output
+      description: Scrubbed. The lines around the failure, including any yellow `!` warnings.
+      render: text
+
+  - type: checkboxes
+    id: scrubbed
+    attributes:
+      label: Privacy check
+      options:
+        - label: This issue contains no token and no real names, emails, or other personal data.
+          required: true

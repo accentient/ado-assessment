@@ -1,15 +1,11 @@
-# Local configuration containing organization details
-appsettings.json
+# Project lists for AssessProjects -CsvPath. They name a client's projects.
+projects.csv
 
 # Assessment output. Reports list names, emails, group memberships, and
 # access levels for everyone in the organization. Never commit them.
 reports/
 ADO-Assessment-*.md
 ADO-Assessment-*.json
-
-# Run artifacts. The whole folder, not just *.log: runs may also drop
-# scratch files here.
-logs/
 
 # PowerShell / editor
 *.suo
@@ -23,6 +19,11 @@ TestResults/
 Thumbs.db
 .DS_Store
 
-# Local notes and internal working docs (README stays public)
+# Local notes and internal working docs. README and the community health files
+# stay public.
 /*.md
 !README.md
+!CHANGELOG.md
+!CODE_OF_CONDUCT.md
+!CONTRIBUTING.md
+!SECURITY.md

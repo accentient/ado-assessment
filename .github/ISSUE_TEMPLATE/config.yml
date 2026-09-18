@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/accentient/ado-assessment/security/advisories/new
+    about: Report security issues privately, not as a public issue.
+  - name: Assessment consulting
+    url: https://accentient.com
+    about: Help interpreting an assessment, or with a migration or Professional Scrum adoption.
