@@ -200,6 +200,10 @@ Each run writes to `reports/` in the repository root:
 
 Progress and warnings are written to the console. There is no separate log file.
 
+See **[docs/example-report.md](docs/example-report.md)** for a complete report from a real
+four-project organization, anonymized: every person, email, team, repository, and pipeline name
+is fictional, and the counts are real.
+
 ## Handle the output with care
 
 The report lists **names, email addresses, group memberships, access levels, and last access
