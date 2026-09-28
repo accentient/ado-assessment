@@ -2,8 +2,8 @@ function Main {
   clear-host
 
   # The organization to assess, and the Windows Credential Manager entry that holds its PAT.
-  $script:AdoOrgUrl = "https://dev.azure.com/<org>/"
-  $script:AdoCredentialName = "org-assessment-PAT"
+  $script:AdoOrgUrl = "https://dev.azure.com/YOUR-ORG/"
+  $script:AdoCredentialName = "YOUR-ORG-assessment-PAT"
   $script:ReportFolder = Join-Path (Split-Path $PSScriptRoot -Parent) "reports"
 
   # One-time helpers. Uncomment, run once, comment out again.
