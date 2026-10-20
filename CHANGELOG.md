@@ -19,4 +19,9 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - Hermetic Pester test suite, including an end-to-end run against a fake organization. It runs in
   GitHub Actions on PowerShell 7 and Windows PowerShell 5.1.
 
+### Changed
+
+- Relicensed from MIT to the Unlicense, and marked the code as AI-generated with no copyright
+  claimed.
+
 [Unreleased]: https://github.com/accentient/ado-assessment/commits/main

@@ -84,6 +84,9 @@ and a test checks that it does.
 
 A maintainer will review and may ask for changes. Thanks for helping.
 
-## License
+## License and authorship
 
-By contributing, you agree that your contributions are licensed under the [MIT License](LICENSE).
+This project is in the public domain under the [Unlicense](LICENSE). By contributing, you agree
+that your contribution is also dedicated to the public domain under the Unlicense. In the pull
+request, say which parts an AI wrote and which parts you wrote yourself. The README's
+[License and authorship](README.md#license-and-authorship) section explains why.

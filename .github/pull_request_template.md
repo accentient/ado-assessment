@@ -16,3 +16,5 @@
 - [ ] An unreadable area still shows `n/a` with a warning instead of stopping the run
 - [ ] README is updated if users will see a difference, including token scopes for any new API
 - [ ] The diff contains no token, and no real organization, names, or emails
+- [ ] The summary says which parts an AI wrote and which parts I wrote, and I agree my contribution
+      is public domain under the [Unlicense](../LICENSE)
